@@ -16,6 +16,7 @@
         </div>
         <button class="addMemoButton" @click="addMemo">Add Memo</button>
         <button class="deleteMemoButton" v-if="memos.length > '1'" @click="deleteMemo">Delete Memo</button>
+        <button class="saveMemoButton" @click="saveMemos">Save Memos</button>
       </div>
       <textarea class="markdown" v-model="memos[selectedIndex].markdown"></textarea>
       <div class="preview" v-html="preview()"></div>
@@ -26,6 +27,7 @@
 <script>
   import firebase from "firebase/app";
   import "firebase/auth";
+  import "firebase/firestore";
   import marked from "marked";
 
   export default {
@@ -58,6 +60,13 @@
       },
       selectMemo: function(index) {
         this.selectedIndex = index;
+      },
+      saveMemos: function() {
+        firebase
+            .firestore()
+            .collection("memos")
+            .doc(this.user.uid)
+            .set({ memos: this.memos });
       },
       preview: function() {
         return marked(this.memos[this.selectedIndex].markdown);
@@ -97,6 +106,9 @@
   }
   .addMemoButton {
     margin-top: 20px;
+  }
+  .deleteMemoButton {
+    margin: 10px;
   }
   .markdown {
     width: 40%;
