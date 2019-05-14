@@ -30,3 +30,6 @@ yarn run lint
 yarn build
 firebase deploy
 ```
+
+Thank you for 
+[改訂新版　Vue.jsとFirebaseで作るミニWebサービス (技術の泉シリーズ（NextPublishing）)](https://www.amazon.co.jp/gp/product/B07HXMHQQK?pf_rd_p=7b903293-68b0-4a33-9b7c-65c76866a371&pf_rd_r=XMHHEAD7B6HHJD1ND6DT).
