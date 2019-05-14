@@ -15,6 +15,7 @@
           </p>
         </div>
         <button class="addMemoButton" @click="addMemo">Add Memo</button>
+        <button class="deleteMemoButton" v-if="memos.length > '1'" @click="deleteMemo">Delete Memo</button>
       </div>
       <textarea class="markdown" v-model="memos[selectedIndex].markdown"></textarea>
       <div class="preview" v-html="preview()"></div>
@@ -34,7 +35,7 @@
       return {
         memos: [
           {
-            markdown: ""
+            markdown: "無題のメモ"
           }
         ],
         selectedIndex: 0
@@ -48,6 +49,12 @@
         this.memos.push({
           markdown: "無題のメモ"
         });
+      },
+      deleteMemo: function() {
+        this.memos.splice(this.selectedIndex, 1);
+        if (this.selectedIndex > 0) {
+          this.selectedIndex--;
+        }
       },
       selectMemo: function(index) {
         this.selectedIndex = index;
