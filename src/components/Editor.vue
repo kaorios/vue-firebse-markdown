@@ -43,6 +43,18 @@
         selectedIndex: 0
       };
     },
+    created: function() {
+      firebase
+          .firestore()
+          .collection("memos")
+          .doc(this.user.uid)
+          .get()
+          .then(doc => {
+            if (doc.exists && doc.data().memos) {
+              this.memos = doc.data().memos;
+            }
+          });
+    },
     methods: {
       logout: function() {
         firebase.auth().signOut();
