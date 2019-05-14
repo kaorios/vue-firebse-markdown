@@ -24,3 +24,9 @@ yarn run test
 ```
 yarn run lint
 ```
+
+### deploy to firebase
+```
+yarn build
+firebase deploy
+```
